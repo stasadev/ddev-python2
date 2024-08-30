@@ -1,0 +1,13 @@
+name: python2
+
+# list of files and directories listed that are copied into project .ddev directory
+project_files:
+  - config.python2.yaml
+  - web-build/Dockerfile.python2
+
+pre_install_actions:
+  # Ensure we're on DDEV 1.23+ which uses Debian 12+ with Python3,
+  # Python2 is available by default in previous versions of Debian.
+  - |
+    #ddev-description:Checking DDEV version
+    (ddev debug capabilities | grep corepack >/dev/null) || (echo "This addon should only be installed in DDEV v1.23+ since you already have Python2 in yours $(ddev --version)" && false)
