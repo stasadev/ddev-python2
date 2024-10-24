@@ -14,8 +14,23 @@ This is only required if your `npm` uses Python2 to build its dependencies.
 
 ## Installation
 
-1. `ddev get stasadev/ddev-python2`
-2. `ddev restart`
+For DDEV v1.23.5 or above run
+
+```sh
+ddev add-on get stasadev/ddev-python2
+```
+
+For earlier versions of DDEV run
+
+```sh
+ddev get stasadev/ddev-python2
+```
+
+Then restart your project
+
+```sh
+ddev restart
+```
 
 ## Usage
 
