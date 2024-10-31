@@ -4,7 +4,7 @@ setup() {
   export TESTDIR=~/tmp/test-python2
   mkdir -p $TESTDIR
   export PROJNAME=test-python2
-  export DDEV_NON_INTERACTIVE=true
+  export DDEV_NONINTERACTIVE=true
   ddev delete -Oy ${PROJNAME} >/dev/null 2>&1 || true
   cd "${TESTDIR}"
   ddev config --project-name=${PROJNAME}
@@ -32,6 +32,7 @@ teardown() {
   health_checks
 }
 
+# bats test_tags=release
 @test "install from release" {
   set -eu -o pipefail
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
