@@ -1,8 +1,8 @@
 #ddev-generated
 # Adapted from https://www.fadedbee.com/2024/01/18/installing-python2-on-debian-12-bookworm/
-ARG TARGETPLATFORM
+ARG TARGETARCH
 RUN mkdir -p /tmp/python2 && \
-    wget -O /tmp/python2/python2.7.tar.gz https://github.com/stasadev/ddev-python2/releases/download/v1.0.0/python2.7_${TARGETPLATFORM##linux/}.tar.gz && \
+    wget -O /tmp/python2/python2.7.tar.gz https://github.com/stasadev/ddev-python2/releases/download/v1.0.0/python2.7_${TARGETARCH}.tar.gz && \
     tar -xzf /tmp/python2/python2.7.tar.gz -C /tmp/python2 && \
     dpkg -i /tmp/python2/*.deb && \
     rm -rf /tmp/python2 && \
