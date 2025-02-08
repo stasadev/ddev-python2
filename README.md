@@ -1,4 +1,4 @@
-[![tests](https://github.com/stasadev/ddev-python2/actions/workflows/tests.yml/badge.svg)](https://github.com/stasadev/ddev-python2/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+[![tests](https://github.com/stasadev/ddev-python2/actions/workflows/tests.yml/badge.svg)](https://github.com/stasadev/ddev-python2/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
 
 # DDEV Python2 Add-on <!-- omit in toc -->
 
