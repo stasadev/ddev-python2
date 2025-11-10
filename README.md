@@ -24,10 +24,10 @@ After installation, make sure to commit the `.ddev` directory to version control
 
 ## Usage
 
-After installation, you can run Python 2:
-
-- `python2.7` (installed at `/usr/bin/python2.7`)
-- `python` (symlink to `python2.7` installed at `/usr/local/bin/python`)
+| Command | Description |
+| ------- | ----------- |
+| `ddev exec python2.7` | Run Python 2.7.18 inside the `web` container<br>Installed at `/usr/bin/python2.7` |
+| `ddev exec python` | Run Python 2.7.18 inside the `web` container<br>Symlink to `/usr/bin/python2.7` installed at `/usr/local/bin/python` |
 
 This add-on also installs `build-essential`, which is normally required for `npm` build, see [config.python2.yaml](./config.python2.yaml). Remove or replace the contents of this file if you only need Python 2.
 
