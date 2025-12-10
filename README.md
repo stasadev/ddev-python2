@@ -1,7 +1,7 @@
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
-[![tests](https://github.com/stasadev/ddev-python2/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/stasadev/ddev-python2/actions/workflows/tests.yml?query=branch%3Amain)
-[![last commit](https://img.shields.io/github/last-commit/stasadev/ddev-python2)](https://github.com/stasadev/ddev-python2/commits)
-[![release](https://img.shields.io/github/v/release/stasadev/ddev-python2)](https://github.com/stasadev/ddev-python2/releases/latest)
+[![tests](https://github.com/ddev/ddev-python2/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/ddev/ddev-python2/actions/workflows/tests.yml?query=branch%3Amain)
+[![last commit](https://img.shields.io/github/last-commit/ddev/ddev-python2)](https://github.com/ddev/ddev-python2/commits)
+[![release](https://img.shields.io/github/v/release/ddev/ddev-python2)](https://github.com/ddev/ddev-python2/releases/latest)
 
 # DDEV Python 2
 
@@ -16,7 +16,7 @@ It is only needed if your `npm` setup requires Python 2 to build dependencies.
 ## Installation
 
 ```bash
-ddev add-on get stasadev/ddev-python2
+ddev add-on get ddev/ddev-python2
 ddev restart
 ```
 
@@ -33,4 +33,6 @@ This add-on also installs the `build-essential` package, which is usually requir
 
 ## Credits
 
-**Contributed and maintained by [@stasadev](https://github.com/stasadev)**
+**Contributed by [@stasadev](https://github.com/stasadev)**
+
+**Maintained by the [DDEV team](https://ddev.com/support-ddev/)**
