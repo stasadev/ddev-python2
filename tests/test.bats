@@ -39,13 +39,25 @@ setup() {
 }
 
 health_checks() {
-  run ddev exec python -V
+  run ddev exec python --version
   assert_success
   assert_output "Python 2.7.18"
 
-  run ddev exec python2.7 -V
+  run ddev exec python2.7 --version
   assert_success
   assert_output "Python 2.7.18"
+
+  run ddev exec pip --version
+  assert_success
+  assert_output "pip 20.0.2 from /usr/local/lib/python2.7/site-packages/pip (python 2.7)"
+
+  run python -c "import hashlib; print('MD5:', hashlib.md5('test').hexdigest())"
+  assert_success
+  assert_output "('MD5:', '098f6bcd4621d373cade4e832627b4f6')"
+
+  run python -c "import ssl; print('SSL:', ssl.OPENSSL_VERSION)"
+  assert_success
+  assert_output "('SSL:', 'OpenSSL 1.1.1d  10 Sep 2019')"
 }
 
 teardown() {
