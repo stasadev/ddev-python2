@@ -1,0 +1,7 @@
+#ddev-generated
+services:
+  # This service is only used to pull the Docker image for offline use.
+  python2:
+    image: python:2.7-slim-${DDEV_SITENAME}-built
+    profiles:
+      - python2

@@ -2,6 +2,7 @@ name: python2
 
 project_files:
   - config.python2.yaml
+  - docker-compose.python2.yaml
   - web-build/Dockerfile.python2
 
-ddev_version_constraint: '>= v1.23.5'
+ddev_version_constraint: '>= v1.24.10'
