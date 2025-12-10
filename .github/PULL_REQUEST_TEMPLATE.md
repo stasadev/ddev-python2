@@ -16,6 +16,7 @@
 ddev add-on get https://github.com/stasadev/ddev-python2/tarball/refs/pull/REPLACE_ME_WITH_THIS_PR_NUMBER/head
 ddev restart
 ddev exec python --version
+ddev exec pip --version
 ```
 
 ## Automated Testing Overview

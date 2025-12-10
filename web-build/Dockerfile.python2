@@ -1,6 +1,6 @@
 #ddev-generated
 COPY --from=python:2.7-slim /usr/local /usr/local
-COPY --from=python:2.7-slim /usr/lib/ /tmp/python2-libs/
+COPY --from=python:2.7-slim /usr/lib /tmp/python2-libs
 ARG TARGETARCH
 RUN if [ "$TARGETARCH" = "amd64" ]; then \
         LIB_ARCH="x86_64-linux-gnu"; \
