@@ -1,11 +1,17 @@
 #ddev-generated
-# Adapted from https://web.archive.org/web/20250223192706/https://www.fadedbee.com/2024/01/18/installing-python2-on-debian-12-bookworm/
+COPY --from=python:2.7-slim /usr/local /usr/local
+COPY --from=python:2.7-slim /usr/lib/ /tmp/python2-libs/
 ARG TARGETARCH
-RUN mkdir -p /tmp/python2 && \
-    wget -O /tmp/python2/python2.7.tar.gz https://github.com/stasadev/ddev-python2/releases/download/v1.0.1/python2.7_${TARGETARCH}.tar.gz && \
-    tar -xzf /tmp/python2/python2.7.tar.gz -C /tmp/python2 && \
-    source /etc/os-release && \
-    if [ "$VERSION_CODENAME" = "bookworm" ]; then rm -f /tmp/python2/libnsl2*.deb /tmp/python2/libtirpc3t64*.deb; fi && \
-    dpkg -i /tmp/python2/*.deb && \
-    rm -rf /tmp/python2 && \
-    ln -s /usr/bin/python2.7 /usr/local/bin/python
+RUN if [ "$TARGETARCH" = "amd64" ]; then \
+        LIB_ARCH="x86_64-linux-gnu"; \
+    elif [ "$TARGETARCH" = "arm64" ]; then \
+        LIB_ARCH="aarch64-linux-gnu"; \
+    else \
+        echo "Unsupported architecture: $TARGETARCH"; exit 1; \
+    fi && \
+    echo "Detected architecture: $TARGETARCH ($LIB_ARCH)" && \
+    mkdir -p /usr/lib/$LIB_ARCH && \
+    cp /tmp/python2-libs/*/libssl.so.1.1 /usr/lib/$LIB_ARCH/ && \
+    cp /tmp/python2-libs/*/libcrypto.so.1.1 /usr/lib/$LIB_ARCH/ && \
+    rm -rf /tmp/python2-libs && \
+    ldconfig
