@@ -26,8 +26,8 @@ After installation, make sure to commit the `.ddev` directory to version control
 
 | Command | Description |
 | ------- | ----------- |
-| `ddev exec python2.7` | Run Python 2.7.18 inside the `web` container.<br>Installed at `/usr/bin/python2.7` |
-| `ddev exec python` | Run Python 2.7.18 inside the `web` container.<br>Symlink at `/usr/local/bin/python` |
+| `ddev exec python` | Run Python 2.7.18 inside the `web` container.<br>Installed at `/usr/local/bin/python` |
+| `ddev exec pip` | Run pip 20.0.2 inside the `web` container.<br>Installed at `/usr/local/bin/pip` |
 
 This add-on also installs the `build-essential` package, which is usually required for the `npm build`, see [config.python2.yaml](./config.python2.yaml). Remove or replace the contents of this file if you only need Python 2.
 
