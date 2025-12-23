@@ -73,6 +73,10 @@ health_checks() {
   assert_success
   assert_output "('SSL:', 'OpenSSL 1.1.1d  10 Sep 2019')"
 
+  run ddev describe
+  assert_success
+  assert_output --partial "For docker pull"
+
   if [ "${USE_CUSTOM_NODE:-}" = "true" ]; then
     run ddev exec node -v
     assert_success
