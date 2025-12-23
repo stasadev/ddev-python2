@@ -2,16 +2,20 @@
 COPY --from=python:2.7-slim /usr/local /usr/local
 COPY --from=python:2.7-slim /usr/lib /tmp/python2-libs
 ARG TARGETARCH
-RUN if [ "$TARGETARCH" = "amd64" ]; then \
-        LIB_ARCH="x86_64-linux-gnu"; \
-    elif [ "$TARGETARCH" = "arm64" ]; then \
-        LIB_ARCH="aarch64-linux-gnu"; \
-    else \
-        echo "Unsupported architecture: $TARGETARCH"; exit 1; \
-    fi && \
-    echo "Detected architecture: $TARGETARCH ($LIB_ARCH)" && \
-    mkdir -p /usr/lib/$LIB_ARCH && \
-    cp /tmp/python2-libs/*/libssl.so.1.1 /usr/lib/$LIB_ARCH/ && \
-    cp /tmp/python2-libs/*/libcrypto.so.1.1 /usr/lib/$LIB_ARCH/ && \
-    rm -rf /tmp/python2-libs && \
-    ldconfig
+RUN <<EOF
+set -eu -o pipefail
+chmod -f ugo+rwx /usr/local/bin
+if [ "$TARGETARCH" = "amd64" ]; then
+    LIB_ARCH="x86_64-linux-gnu"
+elif [ "$TARGETARCH" = "arm64" ]; then
+    LIB_ARCH="aarch64-linux-gnu"
+else
+    echo "Unsupported architecture: $TARGETARCH" >&2
+    exit 1
+fi
+mkdir -p /usr/lib/$LIB_ARCH
+cp /tmp/python2-libs/*/libssl.so.1.1 /usr/lib/$LIB_ARCH/
+cp /tmp/python2-libs/*/libcrypto.so.1.1 /usr/lib/$LIB_ARCH/
+rm -rf /tmp/python2-libs
+ldconfig
+EOF

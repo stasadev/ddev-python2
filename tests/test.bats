@@ -36,6 +36,8 @@ setup() {
   assert_success
   run ddev start -y
   assert_success
+
+  export USE_CUSTOM_NODE=false
 }
 
 health_checks() {
@@ -70,6 +72,12 @@ health_checks() {
   run ddev exec python -c "import ssl; print('SSL:', ssl.OPENSSL_VERSION)"
   assert_success
   assert_output "('SSL:', 'OpenSSL 1.1.1d  10 Sep 2019')"
+
+  if [ "${USE_CUSTOM_NODE:-}" = "true" ]; then
+    run ddev exec node -v
+    assert_success
+    assert_output --regexp '^v18\.[0-9]+\.[0-9]+$'
+  fi
 }
 
 teardown() {
@@ -86,6 +94,21 @@ teardown() {
 
 @test "install from directory" {
   set -eu -o pipefail
+  echo "# ddev add-on get ${DIR} with project ${PROJNAME} in $(pwd)" >&3
+  run ddev add-on get "${DIR}"
+  assert_success
+  run ddev restart -y
+  assert_success
+  health_checks
+}
+
+@test "install with node v18" {
+  set -eu -o pipefail
+
+  export USE_CUSTOM_NODE=true
+  run ddev config --nodejs-version=v18
+  assert_success
+
   echo "# ddev add-on get ${DIR} with project ${PROJNAME} in $(pwd)" >&3
   run ddev add-on get "${DIR}"
   assert_success
