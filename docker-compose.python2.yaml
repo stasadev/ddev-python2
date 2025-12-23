@@ -5,3 +5,5 @@ services:
     image: python:2.7-slim-${DDEV_SITENAME}-built
     profiles:
       - python2
+    x-ddev:
+      describe-info: "For docker pull"
