@@ -76,7 +76,7 @@ health_checks() {
   if [ "${USE_CUSTOM_NODE:-}" = "true" ]; then
     run ddev exec node -v
     assert_success
-    assert_output --regexp '^v18\.\d+\.\d+$'
+    assert_output --regexp '^v18\.[0-9]+\.[0-9]+$'
   fi
 }
 
