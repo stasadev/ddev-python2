@@ -1,10 +1,11 @@
 #ddev-generated
-COPY --from=python:2.7-slim /usr/local /usr/local
+COPY --from=python:2.7-slim /usr/local /tmp/python2-local
 COPY --from=python:2.7-slim /usr/lib /tmp/python2-libs
 ARG TARGETARCH
 RUN <<EOF
 set -eu -o pipefail
-chmod -f ugo+rwx /usr/local/bin
+tar -C /tmp/python2-local -cf - . | tar -C /usr/local -xf - --no-overwrite-dir
+rm -rf /tmp/python2-local
 if [ "$TARGETARCH" = "amd64" ]; then
     LIB_ARCH="x86_64-linux-gnu"
 elif [ "$TARGETARCH" = "arm64" ]; then
